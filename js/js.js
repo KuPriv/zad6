@@ -2,6 +2,8 @@ var price = 0;
 function updatePrice() {
   let s = document.getElementsByName("prodType");
   let select = s[0];
+  let temp1 = 0;
+  let temp2 = 0;
   let prices = getPrices();
   let priceIndex = parseInt(select.value) - 1;
   if (priceIndex >= 0) {
@@ -10,36 +12,45 @@ function updatePrice() {
 
   let radioDiv = document.getElementById("radios");
   radioDiv.style.display = select.value == "2" ? "block" : "none";
-
   let radios = document.getElementsByName("prodOptions");
   radios.forEach(function (radio) {
     if (radio.checked) {
       let optionPrice = prices.prodOptions[radio.value];
       if (optionPrice !== undefined) {
         price += optionPrice;
+        temp1 += optionPrice;
       }
     }
   });
 
   let checkDiv = document.getElementById("checkboxes");
   checkDiv.style.display = select.value == "3" ? "block" : "none";
-
   let checkboxes = document.querySelectorAll("#checkboxes input");
   checkboxes.forEach(function (checkbox) {
     if (checkbox.checked) {
       let propPrice = prices.prodProperties[checkbox.name];
       if (propPrice !== undefined) {
         price += propPrice;
+        temp2 += propPrice;
       }
     }
   });
+  if (select.value == "1") {
+    price -= temp1 + temp2;
+  }
+  if (select.value == "2") {
+    price -= temp2;
+  }
+  if (select.value == "3") {
+    price -= temp1;
+  }
   let result = document.getElementById("result");
   result.innerHTML = price + " рублей";
 }
 
+var f1 = document.getElementsByName("field4");
+var res = document.getElementById("itd_result");
 function itd_calc() {
-  let f1 = document.getElementsByName("field4");
-  let res = document.getElementById("itd_result");
   res.innerHTML = f1[0].value * price;
   return false;
 }
@@ -93,7 +104,12 @@ window.addEventListener("DOMContentLoaded", function (event) {
 
   let but = document.getElementById("button");
   but.addEventListener("click", function (event) {
-    console.log(event.target.value);
+    let f1 = document.getElementsByName("field4");
+    if (f1[0].value.match(/^[1-9][0-9]*$/g) == null) {
+      alert("Введено не число");
+      res.innerHTML = 0;
+      return false;
+    }
     itd_calc();
   });
 
