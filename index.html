@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Веба 6</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="flex-item-1">
+        <div>За 1 штуку:</div>
+        <div id="result">0</div>
+      </div>
+      <form>
+        <select class="flex-item" name="prodType">
+          <option value="1">Продукт 1</option>
+          <option value="2">Продукт 2</option>
+          <option value="3">Продукт 3</option>
+        </select>
+        <div class="flex-item" id="radios">
+          <label
+            ><input type="radio" name="prodOptions" value="option1" /> Опция
+            1</label
+          >
+          <label
+            ><input type="radio" name="prodOptions" value="option2" /> Опция
+            2</label
+          >
+          <label
+            ><input type="radio" name="prodOptions" value="option3" /> Опция
+            3</label
+          >
+        </div>
+        <div class="flex-item" id="checkboxes">
+          <label><input type="checkbox" name="prop1" /> Свойство 1</label>
+          <label><input type="checkbox" name="prop2" /> Свойство 2</label>
+          <label><input type="checkbox" name="prop3" /> Свойство 3</label>
+        </div>
+        <div class="flex-item-2">
+          <div>Количество товара:</div>
+          <input name="field4" type="text" />
+        </div>
+        <button id="button" onclick="return itd_calc();">Рассчитать</button>
+        <div id="itd_result">0</div>
+      </form>
+    </div>
+    <script src="/js/js.js" defer></script>
+  </body>
+</html>
